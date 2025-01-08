@@ -96,6 +96,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("flagLogueo", "true");
       sessionStorage.setItem("rolid", "rolAux");
       this.alert("success", "Haz iniciado sesión con exito");
+      this.utilTools.CloseTimer();
       this.router.navigate(["/inicio"]);
 
       /*let input = btoa(this.loginFormGroup.controls['email'].value + ":" + this.loginFormGroup.controls['password'].value + ":" + 2)
