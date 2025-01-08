@@ -1,0 +1,9 @@
+.cardDesign{
+    background-color: #D9D9D9;
+}
+
+.monto-button{
+    height:fit-content;
+    border-radius: 25px;
+    margin: auto 10px;
+}

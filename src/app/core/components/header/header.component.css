@@ -1,0 +1,66 @@
+.position-fixed {
+    position: fixed;
+}
+
+.user-label {
+    text-decoration: none;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.logout-label {
+    text-decoration: none;
+    color: #e8b730;
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.logouticon:hover{
+    cursor:pointer;
+  }
+
+.black-icon {
+    color: black;
+}
+
+.app-fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.icon-menu {
+    margin-left: 80px;
+    color: #fff;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.logout-label:hover {
+    color: #fff;
+}
+
+
+/*
+mat-toolbar {
+    position: relative;
+    z-index: 0;
+    color: #fff;
+}
+*/
+
+p {
+    margin-top: 18px;
+    margin-left: 10px;
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.no-notifications{
+    font-size: 12px;
+    margin-right: 12px;
+}

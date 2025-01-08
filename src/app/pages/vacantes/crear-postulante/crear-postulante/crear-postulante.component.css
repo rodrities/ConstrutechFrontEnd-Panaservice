@@ -1,0 +1,45 @@
+.date-picker-container {
+    align-items: center; /* Alinea verticalmente */
+}
+
+.full-width {
+    width: 100%; /* Asegura que el campo de fecha ocupe todo el ancho disponible */
+}
+
+.c1 {
+    display: flex;
+    border: 1px solid red;
+}
+
+.c2 {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    border: 1px solid green;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggles-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgba(0, 77, 159, .5);
+  }
+  
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #004D9F; /* Cambia a tu color deseado */
+    /* Cambia a tu color de toggle deseado */
+  }
+
+  .button-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

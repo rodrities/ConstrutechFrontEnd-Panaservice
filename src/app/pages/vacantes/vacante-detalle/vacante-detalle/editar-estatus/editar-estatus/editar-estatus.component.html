@@ -1,0 +1,63 @@
+<mat-dialog-content class="mat-typography">
+
+    <fieldset class="mat-elevation-z4" fxLayout="column">
+        <mat-card-header fxFlex="100" fxLayoutAlign="start">
+            <h2 mat-dialog-title>EDITAR ESTATUS</h2>
+        </mat-card-header>
+
+        <form [formGroup]="semanaLaboralGroup" fxLayout="row wrap"
+           fxLayoutAlign="center" style="align-items: stretch;">
+           
+           <div fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always" class="double-form-container">
+            <mat-form-field >
+                <mat-label >Fecha Eva Interna</mat-label>
+                <input matInput formControlName="date" [matDatepicker]="picker" [(ngModel)]="date" >
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+    
+              <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                <mat-label><strong>Resultado Atrac Talento</strong></mat-label>
+                <mat-select [(value)]="vacanteDet.reEvaAtracTalento">
+                    <mat-option *ngFor="let e of resultados" [value]="e">
+                      {{e}}
+                    </mat-option>
+                  </mat-select> 
+              </mat-form-field>
+        </div>
+
+        <div fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always" class="double-form-container">
+            <mat-form-field >
+                <mat-label >Fecha Eva Tecnica</mat-label>
+                <input matInput formControlName="date2" [matDatepicker]="picker2" [(ngModel)]="date2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+    
+              <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                <mat-label><strong>Resultado Prueba Tecnica</strong></mat-label>
+                <mat-select [(value)]="vacanteDet.reEvaTecnica">
+                    <mat-option *ngFor="let e of resultados" [value]="e">
+                      {{e}}
+                    </mat-option>
+                  </mat-select> 
+              </mat-form-field>
+        </div>
+
+          <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+            <mat-label><strong>Estus Final</strong></mat-label>
+            <mat-select [(value)]="vacanteDet.vacdEstatus">
+                <mat-option *ngFor="let e of estatus" [value]="e">
+                  {{e}}
+                </mat-option>
+              </mat-select> 
+          </mat-form-field>
+        </form>
+        <div fxLayoutAlign="space-between" style="margin-top: 20px;">
+            <button mat-button class="third_button" (click)="close()">Cancelar</button>
+            <button mat-button class="second_button"  (click)="guardar()">Actualizar</button>
+        </div>
+
+        <p>{{semanaLaboralGroup.date}}</p>
+    </fieldset>
+</mat-dialog-content>

@@ -1,0 +1,41 @@
+export class MasterDTO {
+    uProId: number;
+    uProDesc: string
+    empId: number
+    empDesc: string
+    cantPerDotacion: number
+    cantPerReal: number
+    montMovProv: number
+    montEfect: number
+    montTot: number
+    feCrea: string
+    estId: number
+
+    dotId: number;
+    dotCod: string
+    dotMotivo: string
+    dDetId: number;
+    planId: number;
+    planDesc: string
+    zonId: number;
+    zonDesc: string
+    tCtoId: number;
+    tctoId: number
+    tCtoDesc: string
+    uGesId: number;
+    uGesDesc: string
+    cCosId: number;
+    cCosDesc: string
+    cargId: number;
+    cargDesc: string
+    conpId: number;
+    conpDesc: string
+    feMod: string
+    estado: string
+  ugesId: number;
+  ccosId: number;
+    dotApro1Id: number;
+    dotApro2Id: number;
+    apro1NomCompleto: string;
+    apro2NomCompleto: string;
+}

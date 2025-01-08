@@ -1,0 +1,39 @@
+.proyecto-tab-icon {
+    margin-right: 8px;
+    margin-bottom: 2px;
+}
+
+.proyecto-card {
+    min-width: 1100px;
+    background-color: transparent;
+}
+
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: auto;
+}
+
+.paginator {
+    margin-top: 10px;
+    border: 1px solid #DCDCDC !important;
+    border-radius: 15px;
+}
+
+.formulario {
+    
+    margin-top: 20px;
+    
+}
+
+.button-container {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

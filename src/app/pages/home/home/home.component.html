@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center homeFondo">
+        <!--Cuadro informativo-->
+        <div class="col-10 cuadroInfor">
+            <div class="btn-group-vertical" role="group" aria-label="Vertical button group" style="background-color: rgb(0, 77, 160, .8);">
+                <button type="button" class="btn btn-lg btn-outline-light text-left" [routerLink]="['/atraccion-talento']">
+                    <span class="form-inline"><mat-icon class="mr-3">supervisor_account</mat-icon> Atracción de talento</span>
+                </button>
+                <button type="button" class="btn btn-lg btn-outline-light text-left" [routerLink]="['/seleccion-incorporacion']">
+                    <span class="form-inline"><mat-icon class="mr-3">add_circle</mat-icon>Selección e incorporación de personal</span>
+                </button>
+                <button type="button" class="btn btn-lg btn-outline-light text-left" [routerLink]="['/master-de-personal']">
+                    <span class="form-inline"><mat-icon class="mr-3">folder</mat-icon> Estructura de Personal</span>
+                </button>
+                <button type="button" class="btn btn-lg btn-outline-light text-left" [routerLink]="['/dotacion']">
+                    <span class="form-inline"><mat-icon class="mr-3">groups</mat-icon> Dotación de Personal</span>
+                </button>
+                <button type="button" class="btn btn-lg btn-outline-light text-left" [routerLink]="['/pre-roster']">
+                    <span class="form-inline"><mat-icon class="mr-3">calendar_month</mat-icon> Roster</span>
+                </button>
+                <button type="button" class="btn btn-lg btn-outline-light text-left" [routerLink]="['/reloj-control']">
+                    <span class="form-inline"><mat-icon class="mr-3">watch_later</mat-icon> Reloj Control</span>
+                </button>
+                <button type="button" class="btn btn-lg btn-outline-light text-left" [routerLink]="['/control-asistencia']">
+                    <span class="form-inline"><mat-icon class="mr-3">check_circle</mat-icon> Control de Asistencia</span>
+                </button>
+                <a target="_blank" class="btn btn-lg btn-outline-light text-left" [attr.href]="isDisabled ? null : validateUrlByCargId()">
+                    <span class="form-inline"><mat-icon class="mr-3">insert_chart_outlined</mat-icon> Dashboard</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

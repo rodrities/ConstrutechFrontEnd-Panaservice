@@ -1,0 +1,334 @@
+<div class="form_container">
+  <h1>Asignación de postulante</h1>
+
+  <form #form="ngForm">
+    <div class="form-row">
+      <div class="container_form_check">
+        <div class="form-group_check">
+          <label style="min-width: 50%">¿El postulante cubre la salida de un empleado?
+          </label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="opcionSi" name="opcion" value="si"
+              (click)="showDropdown(false)" [checked]="cameFromSelection" [disabled]="isDisabled"/>
+            <label class="form-check-label" for="opcionSi"> Sí </label>
+          </div>
+          <div class="form-check" *ngIf="hideRadio">
+            <input class="form-check-input" type="radio" id="opcionNo" name="opcion" value="no"
+              (click)="showDropdown(true)" />
+            <label class="form-check-label" for="opcionNo"> No </label>
+          </div>
+        </div>
+        <div class="form-group dropdown_person" *ngIf="!showPersonSelect">
+          <label for="opcion">Ingrese el dni del empleado a reemplazar: </label>
+          <form class="search_person">
+            <div class="form-group" style="margin: 0 !important">
+              <input type="text" class="form-control" id="responsable" name="responsable" [(ngModel)]="dni" [disabled]="dniDisabled"/>
+              <!-- <span *ngIf="myForm.controls['dni'].getError('required')">Este campo es requerido</span>
+              <span *ngIf="myForm.controls['dni'].getError('minlength')">Este campo debe tener minimo 8 caracteres</span> -->
+            </div>
+
+            <button mat-raised-button class="first_button" (click)="onSearch()"  [disabled]="dniDisabled">
+              BUSCAR
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div style="height: 10px"></div>
+
+      <div *ngIf="check_panel">
+        <mat-accordion style="margin-top: 20rem">
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <p *ngIf="!showPersonSelect">Datos del empleado a reemplazar</p>
+                <p *ngIf="showPersonSelect">Datos del empleado</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="input_container" *ngIf="!showPersonSelect">
+              <div class="form-group">
+                <label for="responsable">Nombres</label>
+                <input type="text" class="form-control" id="responsable" name="perNombres"
+                  [(ngModel)]="persona.perNombres" readonly />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="jefeOperacion">Apellidos</label>
+                <input type="text" class="form-control" id="jefeOperacion" name="perApellidos"
+                  [(ngModel)]="persona.perApellidos" readonly />
+              </div>
+            </div>
+            <div class="input_container">
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="showPersonSelect">
+                <label for="opcion">Planilla </label>
+                <select class="form-control" #planilla id="opcion" name="opcion" style="width: 105.5%; height: 42px"
+                  (click)="getPlanillas()" (change)="getProyecto($event.target.value)" >
+                  <option value="" disabled selected hidden>Selecciona una opción</option>
+                  <option *ngFor="let i of planillas" [value]="i.planId">{{ i.planDes }}</option>
+                </select>
+              </div>
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="!showPersonSelect">
+                <label for="perPlan">Planilla </label>
+                <input type="text" class="form-control" name="perPlan" [(ngModel)]="persona.planDescripcion" readonly />
+              </div>
+
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="showPersonSelect">
+                <label for="opcion">Proyecto </label>
+                <select class="form-control" id="opcion" name="opcion" style="width: 105.5%; height: 42px"
+                  [disabled]="proyectoDisabled" (click)="getUnidadGestion($event.target.value)">
+                  <option value="" disabled selected hidden>Selecciona una opción</option>
+                  <option *ngFor="let i of proyectos" [value]="i.techUndPId">{{ i.techUndPDes }}</option>
+                </select>
+              </div>
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="!showPersonSelect">
+                <label for="perProy">Proyecto </label>
+                <input type="text" class="form-control" name="perProy" [(ngModel)]="persona.uproNombre" readonly />
+              </div>
+            </div>
+
+            <div class="input_container">
+
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="showPersonSelect">
+                <label for="opcion">Unidad de gestión </label>
+                <select class="form-control" id="opcion" name="opcion" style="width: 105.5%; height: 42px"
+                  [disabled]="uniGDisabled" (click)="getCentroCosto($event.target.value)">
+                  <option value="" disabled selected hidden>Selecciona una opción</option>
+                  <option *ngFor="let i of uniG" [value]="i.techUndGId">
+                    {{ i.techUndGDes }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="!showPersonSelect">
+                <label for="opcion">Unidad de gestión </label>
+                <input type="text" class="form-control" name="uniget" [(ngModel)]="persona.ugesNombre" readonly />
+              </div>
+
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="showPersonSelect">
+                <label for="opcion">Centro de Costo </label>
+                <select class="form-control" id="opcion" name="opcion" style="width: 105.5%; height: 42px"
+                  [disabled]="centrocDisabled" (click)="getCargos($event.target.value)">
+                  <option value="" disabled selected hidden>Selecciona una opción</option>
+                  <option *ngFor="let i of centroC" [value]="i.ccosId">{{ i.ccosNombre }}</option>
+                </select>
+              </div>
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="!showPersonSelect">
+                <label for="opcion">Centro de Costo </label>
+                <input type="text" class="form-control" name="cateNombre" [(ngModel)]="persona.cateNombre" readonly />
+              </div>
+
+            </div>
+
+            <div class="input_container">
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="showPersonSelect">
+                <label for="opcion">Cargo </label>
+                <select class="form-control" id="opcion" name="opcion" style="width: 105.5%; height: 42px"
+                  [disabled]="cargosDisabled" (click)="getIdPlan($event.target.value)">
+                  <option value="" disabled selected hidden>Selecciona una opción</option>
+                  <option *ngFor="let i of cargosA" [value]="i.idPlanD">{{ i.cargDesc }}</option>
+                </select>
+              </div>
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="!showPersonSelect">
+                <label for="opcion">Cargo </label>
+                <input type="text" class="form-control" id="fechaReq" name="fechaReq"
+                  [(ngModel)]="persona.cargDescripcion" readonly />
+              </div>
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="!showPersonSelect">
+                <label for="fechCese">Fecha de Cese </label>
+                <input type="text" class="form-control" name="fechCese" [value]="formatCeseDate(persona.fechCese)" readonly />
+              </div>
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="showPersonSelect"></div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <div style="height: 10px"></div>
+
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Datos del nuevo postulante </mat-panel-title>
+              
+            </mat-expansion-panel-header>
+            <div class="input_container">
+              <div class="form-group dropdown_person" style="width: 50% !important" *ngIf="showPersonSelect">
+                <label for="opcion">Postulantes Disponibles (opcional) </label>
+                <select class="form-control" #planilla id="opcion" name="opcion" style="width: 105.5%; height: 42px"
+                (change)="selectPostulante(planilla.value)">
+                  <option value="" disabled selected hidden>Selecciona una opción</option>
+                  <option *ngFor="let v of vacanteDetalle" [value]="v.vacdId">{{ v.postulante.postDni }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="input_container">
+              <div class="form-group col-md-6">
+                <label for="atrApellidos">Nombres</label>
+                <input type="text" class="form-control" id="atrApellidos" name="atrApellidos"
+                  [(ngModel)]="persona_AT.techAtracNombresp"  required/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="atrNombres">Apellidos</label>
+                <input type="text" class="form-control" id="atrNombres" name="atrNombres"
+                  [(ngModel)]="persona_AT.techAtracApellidosp"  required/>
+              </div>
+            </div>
+
+            <div class="input_container">
+              <div class="form-group col-md-6">
+                <label for="atrDni">DNI</label>
+                <input type="number" class="form-control" id="atrDni" name="atrDni" maxlength="8"
+                  [(ngModel)]="persona_AT.techAtracDni" onKeyPress="if(this.value.length==8) return false;"  required/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="atrProcedencia">Procedencia</label>
+                  <select class="form-control" id="atrProcedencia" name="atrProcedencia" style="width: 105.5%; height: 42px"
+                  [(ngModel)]="persona_AT.techAtracProcedencia" required>
+                  <option [ngValue]="undefined" disabled selected hidden>Selecciona una opción</option>
+                  <option *ngFor="let i of departamentos" [ngValue]="i.nombre_ubigeo">{{ i.nombre_ubigeo }}</option>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="input_container">
+              <div class="form-group col-md-6">
+                <label for="atrReclutamiento">Fuente de reclutamiento</label>
+                <input type="text" class="form-control" id="atrReclutamiento" name="atrReclutamiento"
+                  [(ngModel)]="persona_AT.techAtracFuenteRecl"  />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="atrSalario">Salario Básico</label>
+                <!-- <input type="text" [formControl]="inputValue" (input)="formatCurrency()" class="form-control" id="salarioB" name="salarioB"> -->
+                <input class="form-control" type="text" name="atrSalario" id="atrSalario"
+                   [(ngModel)]="persona_AT.techAtracSalBas"
+                  (keyup)="formatCurrency($event)" (blur)="formatCurrency($event, true)" required />
+              </div>
+            </div>
+
+            <div class="input_container">
+              <div class="form-group col-md-6">
+                <label for="atrProceso">Proceso</label>
+                <select class="form-control" id="opcion" name="opcion" style="width: 105.5%; height: 42px"
+                  [(ngModel)]="persona_AT.techAtracProceso" required>
+                  <option [ngValue]="undefined" disabled selected hidden>Selecciona una opción</option>
+                  <option *ngFor="let i of proceso" [ngValue]="i">{{ i }}</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="atrFechaIng">Fecha de ingreso</label>
+                <input type="date" class="form-control" id="atrFechaIng" name="atrFechaIng"
+                  [(ngModel)]="persona_AT.techAtracFechaIng" required />
+              </div>
+            </div>
+
+            <div class="input_container">
+              <div class="form-group col-md-6">
+                <label for="atrFechaIIng">Fecha ideal de ingreso</label>
+                <input type="date" class="form-control" id="atrFechaIIng" name="atrFechaIIng"
+                  [(ngModel)]="persona_AT.techAtracFechaIdealIng" required/>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="fechaReq">Fecha de Req</label>
+                <input type="date" class="form-control" id="fechaReq" name="fechaReq"
+                  [(ngModel)]="persona_AT.techAtracFechaReq"  required/>
+              </div>
+            </div>
+<!--- COLUMNA ADD-->
+            <div class="input_container">
+              <div class="form-group dropdown_person" style="width: 50% !important">
+                <label for="opcion">Estado del proceso </label>
+                <select class="form-control" id="opcion" name="opcion" style="width: 105.5%; height: 42px"
+                  [(ngModel)]="persona_AT.techAtracEstadoProceso" required>
+                  <option [ngValue]="undefined" disabled selected hidden>Selecciona una opción</option>
+                  <option *ngFor="let i of estado" [value]="i">{{ i }}</option>
+                </select>
+              </div>
+
+              <div class="form-group dropdown_person" style="width: 50% !important">
+                <label for="techAtracMotivoContr">Motivo de contratación </label>
+                <input type="text" class="form-control" id="techAtracMotivoContr" name="techAtracMotivoContr"
+                  [(ngModel)]="persona_AT.techAtracMotivoContr"  required/>
+              </div>
+            </div>
+            <div class="input_container">
+              <div class="form-group">
+                <label for="fechaRegistro">Fecha de Registro</label>
+                <input type="date" class="form-control" id="fechaRegistro" name="fechaRegistro"
+                  [(ngModel)]="persona_AT.techAtracTFechRegis" required />
+              </div>
+
+              <div class="form-group">
+                <label for="responsable">Responsable RyS</label>
+                <input type="text" class="form-control" id="responsable" name="responsable"
+                  [(ngModel)]="persona_AT.techAtracResponsableRys"  required/>
+              </div>
+            </div>
+            <div class="input_container">         
+              <div class="form-group col-md-6">
+                <label for="jefeOperacion">Jefe de Operación</label>
+                <input type="text" class="form-control" id="jefeOperacion" name="jefeOperacion"
+                  [(ngModel)]="persona_AT.techAtracJefeO" required />
+              </div>
+              <div class="form-group col-md-6">
+                </div>
+            </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <div style="height: 10px"></div>
+
+        <mat-accordion style="margin-top: 20rem">
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Documentos del nuevo postulante
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="input_container">
+              <div class="form-group col-md-6">
+                <label for="atrFechaE">Fecha de EMO</label>
+                <input type="date" class="form-control" id="atrFechaE" name="atrFechaE"
+                  [(ngModel)]="persona_AT.techAtracEmoDate" (ngModelChange)="changeState('disabledInputEmo')"/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="atrArchE">Archivo EMO</label>
+                <input type="file" class="form-control" id="atrArchE" name="atrArchE"
+                  (change)="onFileSelectedEmo($event)" [disabled]="disabledInputEmo"/>
+              </div>
+            </div>
+
+            <div class="input_container">
+              <div class="form-group col-md-6">
+                <label for="atrFechaInd">Fecha de Inducción</label>
+                <input type="date" class="form-control" id="atrFechaInd" name="atrFechaInd"
+                  [(ngModel)]="persona_AT.techAtracInduccionDate" (ngModelChange)="changeState('disabledInputInd')"/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="atrArchInd">Archivo Inducción</label>
+                <input type="file" class="form-control" id="atrArchInd" name="atrArchInd"
+                  (change)="onFileSelectedInd($event)" [disabled]="disabledInputInd" />
+              </div>
+            </div>
+            <div class="input_container">
+              <div class="form-group" style="width: 100%">
+                <label for="observaciones">Observaciones / Comentarios</label>
+                <textarea class="form-control" id="observaciones" name="observaciones" rows="4" style="width: 98%"
+                  [(ngModel)]="persona_AT.techAtracObservaciones"></textarea>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <div style="height: 10px"></div>
+
+      </div>
+    </div>
+    <button mat-raised-button class="first_button" (click)="closeModal()">
+      Cerrar
+    </button>
+    <button mat-raised-button class="first_button" [disabled]="!form.valid" (click)="save()" *ngIf="buttonActive">
+      Guardar
+    </button>
+  </form>
+
+</div>

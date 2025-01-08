@@ -1,0 +1,58 @@
+<mat-toolbar fxFlex="100" class="mat-elevation-z1 header_color">
+
+    <button mat-icon-button id="menu" *ngIf="flagLogueo" mat-button (click)="navService.toggleMenu()">
+        <mat-icon>view_headline</mat-icon>
+    </button>
+
+
+
+
+    <img alt="" class="imageHea">
+    <span class="app-fill-remaining-space"></span>
+    <!--<div fxLayout="row" fxFlex="100" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <ul class="logout-label">
+            <li *ngIf="flagLogueo">
+                <a href="#" onclick="return false">
+                </a>
+            </li>
+            
+            <li>
+                <a *ngIf="!flagLogueo" routerLink="/authentication">ACCEDER</a>
+            </li>
+        </ul>
+    </div>-->
+
+    <!--<div class="showP2 headertext headercolor opciones" fxLayout="row" fxFlex="100" fxLayoutAlign="start" fxLayoutGap="5px" *ngIf="flagLogueo">
+        <div *ngFor="let trigger of navItems">
+        <app-headermenu
+          [trigger]="trigger"
+          [isRootNode]="false">
+        </app-headermenu>
+      </div>
+    </div>-->
+
+    <div fxLayout="row" fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="20px" *ngIf="flagLogueo">
+        <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
+            <mat-icon>notifications</mat-icon>
+            <mat-badge [matBadge]="notificaciones.length" matBadgePosition="above after"></mat-badge>
+        </button>
+
+        <mat-menu #notificationsMenu="matMenu">
+            <ng-container *ngIf="notificaciones.length > 0; else noNotifications">
+                <button mat-menu-item *ngFor="let notificacion of notificaciones" (click)="onItemClick(notificacion.idDotacion)">
+                    <mat-icon>event</mat-icon> Nueva solicitud en {{ notificacion.proyectoNombre }}
+                </button>
+            </ng-container>
+            <ng-template #noNotifications>
+                <p class="no-notifications">No tienes notificaciones.</p>
+            </ng-template>
+        </mat-menu>
+
+        <mat-icon (click)="logout()" class="black-icon logouticon" mat-list-icon>power_settings_new</mat-icon>
+    </div>
+
+    <audio #notificationSound>
+        <source src="../../../../assets/sound/notificacion.mp3" type="audio/mpeg">
+    </audio>
+
+</mat-toolbar>

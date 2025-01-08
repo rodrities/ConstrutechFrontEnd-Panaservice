@@ -1,0 +1,62 @@
+.drop-zone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .drop-zone p {
+    font-size: 18px;
+    color: #999;
+  }
+  
+  .drop-zone input[type="file"] {
+    display: none;
+  }
+
+  .input-zone{
+    padding: 7px 8px;
+    margin: 5px 0;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  .input-zone input {
+    font-size: 12px !important;
+  }
+
+  .input_container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .second_button{
+    margin: 10px 0;
+  }
+
+  .table_container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table_response{
+    margin-top: 15px;
+  }
+
+  .tabla-datos {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tabla-datos th, .tabla-datos td {
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .tabla-datos th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .tabtabla-datosle tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+

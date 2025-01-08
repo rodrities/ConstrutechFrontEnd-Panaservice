@@ -1,0 +1,111 @@
+<div class="form_container">
+    <h1>DATOS DE LA PERSONA QUE REEMPLAZA</h1>
+    <form #form="ngForm">
+        <div class="form-row">
+            <div class="input_container">
+                <div class="form-group col-md-6">
+                    <label for="atrNombres">Nombres</label>
+                    <input type="text" class="form-control" id="atrNombres" name="atrNombres"
+                        [(ngModel)]="persona_AT.techAtracNombresp" readonly />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="atrApellidos">Apellidos</label>
+                    <input type="text" class="form-control" id="atrApellidos" name="atrApellidos"
+                        [(ngModel)]="persona_AT.techAtracApellidosp" readonly />
+                </div>
+            </div>
+
+            <div class="input_container">
+                <div class="form-group col-md-6">
+                    <label for="atrDni">DNI</label>
+                    <input type="number" class="form-control" id="atrDni" name="atrDni" maxlength="8"
+                        [(ngModel)]="persona_AT.techAtracDni" onKeyPress="if(this.value.length==8) return false;"
+                        required />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="atrProcedencia">Procedencia</label>
+                    <input type="text" class="form-control" id="atrProcedencia" name="atrNomatrProcedenciabres"
+                    [(ngModel)]="persona_AT.techAtracProcedencia" readonly/>
+                </div>
+
+            </div>
+
+            <div class="input_container">
+                <div class="form-group col-md-6">
+                    <label for="atrReclutamiento">Fuente de reclutamiento</label>
+                    <input type="text" class="form-control" id="atrReclutamiento" name="atrReclutamiento"
+                        [(ngModel)]="persona_AT.techAtracFuenteRecl" readonly/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="atrSalario">Salario Básico</label>
+                    <!-- <input type="text" [formControl]="inputValue" (input)="formatCurrency()" class="form-control" id="salarioB" name="salarioB"> -->
+                    <input class="form-control" type="text" name="atrSalario" id="atrSalario"
+                        [(ngModel)]="persona_AT.techAtracSalBas" readonly/>
+                </div>
+            </div>
+
+            <div class="input_container">
+                <div class="form-group col-md-6">
+                    <label for="atrProceso">Proceso</label>
+                    <input type="text" class="form-control" id="atrProceso" name="atrProceso"
+                    [(ngModel)]="persona_AT.techAtracProceso"  required/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="atrFechaIng">Fecha de ingreso</label>
+                    <input type="text" class="form-control" id="atrFechaIng" name="atrFechaIng"
+                     readonly [value]="formatCeseDate(persona_AT.techAtracFechaIng)"/>
+                </div>
+            </div>
+
+            <div class="input_container">
+                <div class="form-group col-md-6">
+                    <label for="atrFechaIIng">Fecha ideal de ingreso</label>
+                    <input type="text" class="form-control" id="atrFechaIIng" name="atrFechaIIng"
+                         [value]="formatCeseDate(persona_AT.techAtracFechaIdealIng)" readonly />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="fechaReq">Fecha de Req</label>
+                    <input type="text" class="form-control" id="fechaReq" name="fechaReq"
+                        [value]="formatCeseDate(persona_AT.techAtracFechaReq)" readonly />
+                </div>
+            </div>
+            <!--- COLUMNA ADD-->
+            <div class="input_container">
+                <div class="form-group dropdown_person" style="width: 50% !important">
+                    <label for="opcion">Estado del proceso </label>
+                    <input type="text" class="form-control" id="opcion" name="opcion"
+                        [(ngModel)]="persona_AT.techAtracEstadoProceso" readonly />
+                </div>
+
+                <div class="form-group dropdown_person" style="width: 50% !important">
+                    <label for="techAtracMotivoContr">Motivo de contratación </label>
+                    <input type="text" class="form-control" id="techAtracMotivoContr" name="techAtracMotivoContr"
+                        [(ngModel)]="persona_AT.techAtracMotivoContr" readonly />
+                </div>
+            </div>
+            <div class="input_container">
+                <div class="form-group">
+                    <label for="fechaRegistro">Fecha de Registro</label>
+                    <input type="text" class="form-control" id="fechaRegistro" name="fechaRegistro"
+                     [value]="formatCeseDate(persona_AT.techAtracTFechRegis)" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="responsable">Responsable RyS</label>
+                    <input type="text" class="form-control" id="responsable" name="responsable"
+                        [(ngModel)]="persona_AT.techAtracResponsableRys" readonly />
+                </div>
+            </div>
+            <div class="input_container">
+                <div class="form-group col-md-6">
+                    <label for="jefeOperacion">Jefe de Operación</label>
+                    <input type="text" class="form-control" id="jefeOperacion" name="jefeOperacion"
+                        [(ngModel)]="persona_AT.techAtracJefeO" readonly />
+                </div>
+                <div class="form-group col-md-6">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

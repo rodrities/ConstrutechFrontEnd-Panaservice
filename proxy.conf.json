@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://intranet.panaservice.pe/construtech",
+      "secure": false
+    }
+  }

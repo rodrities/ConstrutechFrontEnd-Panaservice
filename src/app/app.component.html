@@ -1,0 +1,13 @@
+<head>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title></title>
+</head>
+<link *ngIf="temaEstado" rel="stylesheet" [href]="cssUrl">
+<router-outlet>
+</router-outlet>
+<ngx-spinner bdOpacity=0.5 bdColor="rgba(94,94,94,0.62) " size="large " color="#ffffff " type="ball-scale-multiple " [fullScreen]="true ">
+    <p style="color: white ">{{'site.cargando' | translate}}</p>
+</ngx-spinner>

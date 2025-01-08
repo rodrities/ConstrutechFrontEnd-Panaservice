@@ -1,0 +1,39 @@
+.mat-table {
+    display: block;
+    width: 100%;
+    max-width: 1950px;
+    margin-top: 40px;
+    
+    position: relative;
+}
+
+.cell-nro {
+    top: 0px !important;
+    z-index: 101 !important;
+    left: 0px !important;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: auto;
+}
+
+.cell-name {
+    width: 250px !important;
+    z-index: 101 !important;
+    top: 0px !important;
+    left: 0px !important;
+}
+
+.header-container {
+    display: flex;
+    align-items:center;
+    justify-content: start;
+}
+
+.add-buttton {
+    margin-left: 5%;
+}

@@ -1,0 +1,121 @@
+
+<mat-tab-group>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="proyecto-tab-icon">groups</mat-icon>
+            <h3>Editar Usuario</h3>
+        </ng-template>
+    
+        <div fxFlex="0 1 calc(90% - 32px)" fxFlex.lt-md="0 1 calc(90% - 32px)" fxFlex.lt-sm="100%">
+            <mat-card class="proyecto-card">
+                <mat-card-content>
+                    
+    
+                    <fieldset class="mat-elevation-z4 formulario" style="border-radius: 15px;">
+                        <form #crearUsuarioForm="ngForm" fxLayoutGap="25px" fxLayout="row" fxLayout.lt-sm="row" fxLayout.lt-xs="row" fxLayoutAlign="space-between center">
+                            <div fxFlex="75" fxLayoutGap="25px">
+                                <div fxLayout="row" fxLayoutGap="25px">
+                                    <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                        <input matInput name="numDoc" required [(ngModel)]="personaDTO.perNuDoc" name="perNuDoc">
+                                        <mat-label><strong> Numero Documento </strong></mat-label>
+                                    </mat-form-field>
+                                  </div>
+                              <div fxLayout="row" fxLayoutGap="25px">
+                                <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <input matInput [disabled]="inputsDeshabilitados" [(ngModel)]="personaDTO.perNombres" name="perNombres">
+                                  <mat-label><strong> Nombres </strong></mat-label>
+                                </mat-form-field>
+                                <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <input matInput [disabled]="inputsDeshabilitados" [(ngModel)]="personaDTO.perApellidoPat" name="perApePaterno">
+                                  <mat-label><strong> Apellido Paterno </strong></mat-label>
+                                </mat-form-field>
+                              </div>
+                              <div fxLayout="row" fxLayoutGap="25px">
+                                <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <input matInput [disabled]="inputsDeshabilitados" [(ngModel)]="personaDTO.perApellidoMat" name="perApeMaterno">
+                                  <mat-label><strong> Apellido Materno </strong></mat-label>
+                                </mat-form-field>
+                                <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <input matInput [disabled]="inputsDeshabilitados" [(ngModel)]="personaDTO.perNuTelefono" name="perNuTelefono">
+                                  <mat-label><strong> Numero Telefono </strong></mat-label>
+                                </mat-form-field>
+                              </div>
+                              <div fxLayout="row" fxLayoutGap="25px">
+                                <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <input matInput [disabled]="inputsDeshabilitados" [(ngModel)]="personaDTO.usuCorreo" name="perCorreo" >
+                                  <mat-label><strong> Correo </strong></mat-label>
+                                </mat-form-field>
+                                <!--<mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <input matInput [(ngModel)]="crearUsuarioRequest.usuClave" name="personaDTO.usuClave">
+                                  <mat-label><strong> Clave </strong></mat-label>
+                                </mat-form-field>-->
+                                <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <input matInput [(ngModel)]="personaDTO.usuClave" name="personaDTO.usuClave" [type]="showPassword ? 'text' : 'password'">
+                                  <mat-label><strong>Clave</strong></mat-label>
+                                  <button mat-icon-button matSuffix (click)="toggleShowPassword()">
+                                    <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                                  </button>
+                                </mat-form-field>
+                              </div>
+                              <div fxLayout="row" fxLayoutGap="25px">
+
+                                <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <mat-select [formControl]="estado" [(ngModel)]="personaDTO.usuEstId" name="personaDTO.usuEstId">                                   
+                                      <mat-option [value]="p.estId" *ngFor="let p of estadoList">
+                                          {{p.estDescripcion}}</mat-option>
+                                  </mat-select>
+                                  <mat-label><strong> Estado </strong></mat-label>
+                                  </mat-form-field>
+
+
+                                <!--<mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                <mat-select [formControl]="estado" [(ngModel)]="personaDTO.usuEstId" name="personaDTO.usuEstId">                                   
+                                    <mat-option value=1>ACTIVO</mat-option>
+                                    <mat-option value=2>INACTIVO</mat-option>
+                                </mat-select>
+                                <mat-label><strong> Estado </strong></mat-label>
+                                </mat-form-field>-->
+                                <mat-form-field fxFlex="50" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <input matInput [disabled]="true" placeholder="CORPORACION PANASERVICE SAC">
+                                  <mat-label><strong> Empresa </strong></mat-label>
+                                </mat-form-field>
+                              </div>
+
+                              <div fxLayout="row" fxLayoutGap="25px">
+                                <mat-form-field fxFlex="48.3" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <mat-select [formControl]="planilla" (selectionChange)="getProyectos()">
+                                    <mat-option [value]="p.planId" *ngFor="let p of planillasGet">
+                                      {{p.planDes}}
+                                    </mat-option>
+                                  </mat-select>
+                                  <mat-label><strong> Planilla </strong></mat-label>
+                                </mat-form-field>
+              
+                                
+                                <mat-form-field fxFlex="48.3" fxFlex.lt-sm="100%" class="campos" floatLabel="always">
+                                  <mat-select [formControl]= "unidades" multiple (click) = "validatePlanilla()">
+                                    <mat-option *ngFor="let p of uProyectoGet" [value]="p.unidId">{{ p.unidNombre }}</mat-option>
+                                  </mat-select>
+                                  <mat-label><strong> Unidad de proyecto </strong></mat-label>
+                                </mat-form-field>
+                                
+                              </div>
+
+
+                            </div>
+                          </form>
+                          
+                    </fieldset>
+                    <div class="button-container">
+                        <button mat-raised-button class="second_button crear_button" type="button" (click)="guardarUsuario()">
+                            GUARDAR
+                        </button>
+                    </div>            
+    
+                </mat-card-content>
+            </mat-card>
+        </div>
+    
+    </mat-tab>
+    </mat-tab-group>
+    

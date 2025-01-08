@@ -1,0 +1,22 @@
+mat-card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.center{
+    padding-left: 3rem;
+}
+ .cursor{
+    cursor: pointer;
+ }
+
+ .danger{
+    margin: 0;
+    color: brown;
+
+ }
+
+ .disabled{
+    cursor: not-allowed;
+ }

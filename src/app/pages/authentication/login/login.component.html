@@ -1,0 +1,42 @@
+<div class="wrapper">
+    <mat-card class="body" fxFlex="50">
+        <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around">
+            <div fxLayoutAlign="center center" fxFlex="50">
+                <img class="logoImg" src="../../assets/img/Panaservice.png" alt="LogoConstruTech">
+            </div>
+
+            <form fxLayout="column" fxLayoutAlign="center" [formGroup]="loginFormGroup" fxFlex="50" fxLayoutGap="10px">
+                <div fxFlex="10">
+                    <h2 fxFlex="100" fxLayoutAlign="center">Acceso de Usuarios</h2>
+                </div>
+
+                <div fxFlex="10"></div>
+
+                <mat-form-field fxFlex="30">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <input matInput formControlName="email" placeholder="Email" type="email">
+                    <mat-error *ngIf="loginFormGroup.get('email').hasError('required')">
+                        {{'authentication.error_email' | translate}}
+                    </mat-error>
+                    <mat-error *ngIf="loginFormGroup.get('email').hasError('pattern')">
+                        El dato ingresado no es un correo
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="30">
+                    <mat-icon matSuffix>{{'authentication.icon_password' | translate}}</mat-icon>
+                    <input type="password" matInput formControlName="password" placeholder="Password" autocomplete="off">
+                    <mat-error *ngIf="loginFormGroup.get('password').hasError('required')">
+                        {{'authentication.error_password' | translate}}
+                    </mat-error>
+                </mat-form-field>
+
+                <div fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
+                    <button mat-stroked-button [disabled]="this.loginFormGroup.invalid" class="buttonLog btn" (click)="loginSession()" fxFlex="100">
+                        <a style="color: white;">Ingresar</a>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

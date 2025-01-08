@@ -1,0 +1,59 @@
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="proyecto-tab-icon">check_circle</mat-icon>
+      <h3 style="margin-left: 5px">Control de asistencia</h3>
+    </ng-template>
+
+
+    <div fxFlex="0 1 calc(90% - 32px)" fxFlex.lt-md="0 1 calc(90% - 32px)" fxFlex.lt-sm="100%">
+      <mat-card class="proyecto-card">
+        <mat-card-content>
+
+          <fieldset class="mat-elevation-z4" style="margin-bottom: 10px; border-radius: 10px;">
+            <form fxLayout="row" fxLayout.lt-sm="row" fxLayout.lt-xs="row" fxLayoutAlign="end center">
+              <div fxFlex="25" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="end end" fxLayoutGap="25px">
+                <button mat-raised-button class="first_button" type="button" routerLink="ver-marcaciones">
+                  Ver Marcaciones
+                </button>
+
+                <!-- <button mat-raised-button class="second_button" type="button" (click)="openModal()" style="margin-left: 1rem;">
+                  Dashboard
+                </button> -->
+
+                <a mat-raised-button class="third_button" type="button"  href="https://panaserviceperu.sharepoint.com/:u:/r/sites/PlataformaGTH/SitePages/Marcaciones.aspx?csf=1&web=1&share=Eb3geHiPqjlIs1K9sV7HBDMBjVF_h3TQByjxKec4MudiQg&e=JStfOw" target="_blank">Dashboard</a>
+
+              </div>
+            </form>
+          </fieldset>
+
+          <fieldset class="mat-elevation-z4" style="border-radius: 15px">
+            <form fxLayoutGap="25px" fxLayout="row" fxLayout.lt-sm="row" fxLayout.lt-xs="row" fxLayoutAlign="center">
+              <div class="table_container">
+                <div class="qrscanner_container">
+                  <h1>Lector de códigos QR</h1>
+                  <div class="scanner-container">
+                    <zxing-scanner *ngIf="scanningEnabled" [(torch)]="torchEnabled" [formats]="['QR_CODE']"
+                      (scanSuccess)="onScanSuccess($event)"></zxing-scanner>
+                  </div>
+                  <div class="scannerOff" *ngIf="!scanningEnabled"></div>
+
+                  <p *ngIf="scannedData">
+                    Código QR escaneado: {{ scannedData }}
+                  </p>
+
+                  <!-- <button (click)="toggleScanning()"></button> -->
+                  
+                  <button mat-raised-button class="first_button" (click)="toggleScanning()">
+                    Activar/Desactivar Escaneo
+                  </button>
+                </div>
+              </div>
+            </form>
+          </fieldset>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<router-outlet></router-outlet>

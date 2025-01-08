@@ -1,0 +1,35 @@
+.proyecto-card {
+    background-color: transparent;
+}
+
+.paginator {
+    margin-top: 10px;
+    border: 1px solid #DCDCDC !important;
+    border-radius: 15px;
+}
+
+.proyecto-tab-icon {
+    margin-right: 8px;
+    margin-bottom: 2px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: auto;
+}
+
+tr.example-detail-row {
+    height: 0;
+}
+
+.example-element-row td {
+    border-bottom-width: 0;
+  }
+
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }

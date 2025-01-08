@@ -1,0 +1,21 @@
+<mat-sidenav-container style="min-height:88.5%; max-height:fit-content !important; background-color: #e9ecef;">
+    <mat-sidenav #sidenav mode="aside" close style="height: 100%;">
+        <div fxLayout="column" style="height: 100%;">
+            <div>
+                <mat-toolbar class="mat-elevation-z0 menuColor">
+                    <span>Menú Principal</span>
+                </mat-toolbar>
+                <mat-nav-list>
+                    <app-menu-list-item *ngFor="let navItem of navItems" [item]="navItem"></app-menu-list-item>
+                    <a mat-list-item target="_blank" href="https://panaserviceperu.sharepoint.com/sites/PlataformaGTH/SitePages/Panel-Gerencial.aspx">
+                        <mat-icon class="routeIcon" style="margin-right: 10px;">insert_chart_outlined</mat-icon>
+                        Dashboard
+                    </a>
+                </mat-nav-list>
+            </div>
+        </div>
+    </mat-sidenav>
+
+    <router-outlet></router-outlet>
+
+</mat-sidenav-container>
